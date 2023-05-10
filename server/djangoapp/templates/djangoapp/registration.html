@@ -3,9 +3,121 @@
 <head>
     <meta charset="UTF-8">
     {% load static %}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
 </head>
     <body>
+        <nav class="navbar navbar-dark bg-primary">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Dealership Review</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if user.is_authenticated %}
+                    <li>
+                        <a class="btn btn-link" href="#" style="color: white">{{ user.first_name }}({{ user.username }})</a>
+                        <a class="btn btn-link" href="{% url 'djangoapp:logout' %}" style="color: white">Logout</a>
+                        <a class="btn btn-link" href="{% url 'djangoapp:about' %}" style="color: white">About us</a>
+                        <a class="btn btn-link" href="{% url 'djangoapp:contact' %}" style="color: white">Contact us</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <form class="form-inline" action="{% url 'djangoapp:login' %}" method="post">
+                            {% csrf_token %}
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Username" name="username" >
+                                <input type="password" class="form-control" placeholder="Password" name="psw" >
+                                <button class="btn btn-warning" type="submit" style="color: white,">Login</button>
+                                <a class="btn btn-link" href="{% url 'djangoapp:registration' %}" style="color: white">Sign Up</a>
+                                <a class="btn btn-link" href="{% url 'djangoapp:about' %}" style="color: white">About us</a>
+                                <a class="btn btn-link" href="{% url 'djangoapp:contact' %}" style="color: white">Contact us</a>
+                            </div>
+                        </form>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
     <!--Add a registration form here -->
+
+  <section class="vh-100">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-lg-12 col-xl-11">
+            <div class="card-body p-md-5">
+              <div class="row justify-content-center">
+                <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+  
+                  <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+  
+                  <form class="mx-1 mx-md-4" action="{% url 'djangoapp:registration' %}" method="post">
+                    {% csrf_token %}
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <label class="form-label" for="form3Example1c">User Name:</label>
+                        <input type="text" placeholder="Enter User Name: " name="username" id="form3Example1c" class="form-control" required/>
+                      </div>
+                    </div>
+
+
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                            <label class="form-label" for="form3Example1c">First Name:</label>
+                          <input type="text" placeholder="Enter First Name: " id="form3Example1c" class="form-control" name="firstname" required/>
+                        </div>
+                      </div>
+
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                            <label class="form-label" for="form3Example1c">Last Name:</label>
+                          <input type="text" id="form3Example1c" placeholder="Enter Last Name: " class="form-control" name="lastname" required/>
+                        </div>
+                      </div>
+  
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <label class="form-label" for="form3Example4c">Password:</label>
+                        <input type="password" id="form3Example4c" placeholder="Enter Password: " class="form-control" name="psw" required />
+                      </div>
+                    </div>
+                    {% if message %}
+                        <div class=""> <!--Stylize the message paragraph with .alert and .alert-warning class -->
+                    {{ message }}
+                        </div>
+                    {% endif %}
+ 
+                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                      <button class="btn btn-primary btn-lg" style="width:100%" type="submit">Sign up</button>
+                    </div>
+  
+                  </form>
+  
+                </div>
+                <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+  
+                  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                    class="img-fluid" alt="Sample image">
+  
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
     </body>
 </html>

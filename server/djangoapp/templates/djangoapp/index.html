@@ -15,18 +15,40 @@
 </head>
 
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="{% url 'djangoapp:index' %}">BEST CAR DEALERSHIP</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-              <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="{% url 'djangoapp:about' %}">About us</a>
-                <a class="nav-item nav-link active" href="{% url 'djangoapp:contact' %}">Contact us</a>
-              </div>
+
+          <nav class="navbar navbar-dark bg-primary">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Dealership Review</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if user.is_authenticated %}
+                    <li>
+                        <a class="btn btn-link" href="#" style="color: white">{{ user.first_name }}({{ user.username }})</a>
+                        <a class="btn btn-link" href="{% url 'djangoapp:logout' %}" style="color: white">Logout</a>
+                        <a class="btn btn-link" href="{% url 'djangoapp:about' %}" style="color: white">About us</a>
+                        <a class="btn btn-link" href="{% url 'djangoapp:contact' %}" style="color: white">Contact us</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <form class="form-inline" action="{% url 'djangoapp:login' %}" method="post">
+                            {% csrf_token %}
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Username" name="username" >
+                                <input type="password" class="form-control" placeholder="Password" name="psw" >
+                                <button class="btn btn-warning" type="submit" style="color: white,">Login</button>
+                                <a class="btn btn-link" href="{% url 'djangoapp:registration' %}" style="color: white">Sign Up</a>
+                                <a class="btn btn-link" href="{% url 'djangoapp:about' %}" style="color: white">About us</a>
+                                <a class="btn btn-link" href="{% url 'djangoapp:contact' %}" style="color: white">Contact us</a>
+                            </div>
+                        </form>
+                    </li>
+                    {% endif %}
+                </ul>
             </div>
-          </nav>      
+        </nav>
+          
+          
 
     <!--Add a dealer table here -->
 

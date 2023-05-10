@@ -9,6 +9,10 @@ urlpatterns = [
     # view refers to the view function
     # name the URL
 
+    # path(route='course/<int:pk>/enroll/', view=views.EnrollView.as_view(), name='enroll'),
+    # path(route='', view=views.CourseListView.as_view(), name='popular_course_list'),
+    # path(route='course/<int:pk>/', view=views.CourseDetailsView.as_view(), name='course_details'),
+
     # path for about view
     path(route='about/', view=views.about, name='about'),
 
@@ -16,15 +20,20 @@ urlpatterns = [
     path(route='contact/', view=views.contact, name='contact'),
 
     # path for registration
+    path('registration/', view=views.registration_request, name='registration'),
 
     # path for login
+    path('login/', view=views.login_request, name='login'),
 
     # path for logout
+    path('logout/', view=views.logout_request, name='logout'),
 
+    # get dealership
     path(route='', view=views.get_dealerships, name='index'),
 
     # path for dealer reviews view
 
     # path for add a review view
 
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)\
+ + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
