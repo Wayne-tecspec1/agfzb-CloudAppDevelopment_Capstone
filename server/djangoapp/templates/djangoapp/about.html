@@ -15,22 +15,24 @@
 
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="#">Welcome</a>
+            <a class="navbar-brand" href="{% url 'djangoapp:index' %}">BEST CAR DEALERSHIP</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="#">About us</a>
-                <a class="nav-item nav-link" href="#">Contact us</a>
+                <a class="nav-item nav-link active" href="{% url 'djangoapp:about' %}">About us</a>
+                <a class="nav-item nav-link" href="{% url 'djangoapp:contact' %}">Contact us</a>
               </div>
             </div>
-          </nav>
+          </nav>  
 
-          <h1>
-            Welcome to Best Cars dealership, home to the best cars in North America. We sell domestic and imported cars at reasonable prices.
-            </h1>
+          <div class="container" style="margin-top: 50px;text-align: center;">
+            <h1>
+                Welcome to Best Cars dealership, home to the best cars in North America. We sell domestic and imported cars at reasonable prices.
+                </h1>
+                <p>Car Dealership has always been about acting with integrity and delivering exceptional quality in all regards. Find out how we can help you with any of your business or personal needs today. Our different way of doing business means that you won't have to worry when you visit us.</p>
+          </div>
 
     </body>
 
