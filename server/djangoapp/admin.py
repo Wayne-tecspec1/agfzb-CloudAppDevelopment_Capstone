@@ -18,8 +18,8 @@ class CarMakeAdmin(admin.ModelAdmin):
     inlines = [CarModelInline]
     list_display = ('name')
 
-# Register models here
-admin.site.register(CarMake)
+# Register models
+admin.site.register(CarMake) 
 admin.site.register(CarModel)
 admin.site.register(CarDealer)
 admin.site.register(DealerReview)
