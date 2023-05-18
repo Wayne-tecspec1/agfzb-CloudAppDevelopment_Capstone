@@ -51,7 +51,47 @@
           
 
     <!--Add a dealer table here -->
+    <div class="container">
+        <h2>Dealers Table List</h2>
+        <p>View the list of dealers below and click dealer name to view more</p>            
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Dealer Name</th>
+              <th>City</th>
+              <th>Address</th>
+              <th>Zip</th>
+              <th>State <br>
+              <select class="form-control">
+                {% for dealer in dealers %}
+                <option selected value={{dealer.state}}>{{dealer.state}}</option>
+            {% endfor %}
+      </select>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for dealer in dealership_list %}
+            <tr>
+                <td>{{dealer.id}}</td>
+                <td>{{dealer.name}}</td>
+                <td>{{dealer.city}}</td>
+                <td>{{dealer.address}}</td>
+                <td>{{dealer.zip}}</td>
+                <td>{{dealer.state}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
 
     </body>
+
+    <script>
+        $(function() {
+          $('#table').bootstrapTable()
+        })
+      </script>
 
 </html>

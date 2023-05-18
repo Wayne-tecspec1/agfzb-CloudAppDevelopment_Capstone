@@ -10,8 +10,57 @@
     <body>
 
     <!--Add a nav bar here -->
+    <nav class="navbar navbar-dark bg-primary">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Dealership Review</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                <li>
+                    <a class="btn btn-link" href="#" style="color: white">{{ user.first_name }}({{ user.username }})</a>
+                    <a class="btn btn-link" href="{% url 'djangoapp:logout' %}" style="color: white">Logout</a>
+                    <a class="btn btn-link" href="{% url 'djangoapp:about' %}" style="color: white">About us</a>
+                    <a class="btn btn-link" href="{% url 'djangoapp:contact' %}" style="color: white">Contact us</a>
+                </li>
+                {% else %}
+                <li>
+                    <form class="form-inline" action="{% url 'djangoapp:login' %}" method="post">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Username" name="username" >
+                            <input type="password" class="form-control" placeholder="Password" name="psw" >
+                            <button class="btn btn-warning" type="submit" style="color: white,">Login</button>
+                            <a class="btn btn-link" href="{% url 'djangoapp:registration' %}" style="color: white">Sign Up</a>
+                            <a class="btn btn-link" href="{% url 'djangoapp:about' %}" style="color: white">About us</a>
+                            <a class="btn btn-link" href="{% url 'djangoapp:contact' %}" style="color: white">Contact us</a>
+                        </div>
+                    </form>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
 
     <!-- Add reviews as cards -->
+      <div class="container mt-3">
+        <h2>{{dealer.name}} Car Dealership - Reviews</h2>
+        <p>Check user reviews below</p>
+      <div class="row col-md-12">        
+          {% for dealer in dealership_list %}
+          <div class="card col-md-4">
+            <div class="card-body">
+                <img class="card-img-top" src="https://www.kindpng.com/picc/m/341-3410910_sedan-hatchback-car-icon-png-transparent-png.png" alt="Card image">
+              <h4 class="card-title">{{dealer.name}}</h4>
+              <p class="card-text">{{dealer.year}}</p>
+              <p>{{dealer.description}}</p>
+            </div>
+          </div>
+          {% endfor %}
+      </div>
+        
+    </div>
+    
 
     </body>
 
